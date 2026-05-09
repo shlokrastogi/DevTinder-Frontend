@@ -33,13 +33,13 @@ const Body = () => {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col">
       <Navbar />
-
-      <div className="flex-1">
-        <Outlet />
+      <div className="min-h-screen">
+        <div className="flex-1">
+          <Outlet />
+        </div>
       </div>
-
       <Footer />
     </div>
   );
