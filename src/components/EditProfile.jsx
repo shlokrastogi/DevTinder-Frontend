@@ -16,9 +16,13 @@ const EditProfile = ({ user }) => {
   const [skills, setSkills] = useState((user?.skills || []).join(", "));
   const [about, setAbout] = useState(user?.about || "");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
   const dispatch = useDispatch();
 
   const handleSave = async () => {
+    setError("");
+    setSuccess(false);
+
     try {
       const cleanedSkills = Array.isArray(skills)
         ? skills
@@ -44,14 +48,18 @@ const EditProfile = ({ user }) => {
       );
 
       dispatch(addUser(res.data.user));
+
+      setSuccess(true);
+
+      {
+        success && <p className="text-green-500">Profile updated!</p>;
+      }
     } catch (err) {
+      console.log(err);
       setError(
         err.response?.data?.message ||
           "An error occurred while saving profile.",
       );
-    }
-    if (!error) {
-      alert("Profile updated successfully!");
     }
   };
 
@@ -132,6 +140,9 @@ const EditProfile = ({ user }) => {
         ></textarea>
 
         {error && <p className="text-red-500 mt-2">{error}</p>}
+        {success && (
+          <p className="text-green-500 mt-2">Profile updated successfully!</p>
+        )}
 
         <button className="btn btn-primary mt-4" onClick={handleSave}>
           Save Changes

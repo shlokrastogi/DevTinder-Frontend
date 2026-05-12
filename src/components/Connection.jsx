@@ -42,7 +42,10 @@ const Connection = () => {
         const skillsArray = Array.isArray(skills) ? skills : [];
 
         return (
-          <div className="flex flex-row flex-wrap gap-4 card card-side bg-base-300 shadow-sm">
+          <div
+            key={connection._id}
+            className="flex flex-row flex-wrap gap-4 card card-side bg-base-300 shadow-sm"
+          >
             <figure>
               <img
                 className="w-48  object-cover"
