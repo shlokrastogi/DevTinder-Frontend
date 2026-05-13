@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 import { addUser } from "../utils/userSlice";
+import { useEffect } from "react";
 
 const EditProfile = ({ user }) => {
   const userFromStore = useSelector((store) => store.user);
@@ -62,6 +63,16 @@ const EditProfile = ({ user }) => {
       );
     }
   };
+
+  useEffect(() => {
+    setFirstName(user?.firstName || "");
+    setLastName(user?.lastName || "");
+    setPhotoUrl(user?.photoUrl || "");
+    setAge(user?.age || "");
+    setGender(user?.gender || "");
+    setSkills((user?.skills || []).join(", "));
+    setAbout(user?.about || "");
+  }, [user]);
 
   return (
     <div className="flex items-center space-x-6 justify-center m-4">

@@ -31,7 +31,7 @@ const Connection = () => {
     return <h1 className="text-2xl font-bold mb-4">No Connections Found</h1>;
 
   return (
-    <div className="p-4 min-h-screen flex items-center justify-center flex-col gap-4 flex-wrap">
+    <div className="p-4 min-h-screen flex items-center flex-col gap-4 flex-wrap">
       <h1 className="text-2xl font-bold mb-4">
         Your Connections ({connectionData.length})
       </h1>
