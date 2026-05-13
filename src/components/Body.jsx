@@ -7,8 +7,10 @@ import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser } from "../utils/userSlice";
+import { useLocation } from "react-router-dom";
 
 const Body = () => {
+  const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userData = useSelector((store) => store.user);
@@ -29,8 +31,11 @@ const Body = () => {
   };
 
   useEffect(() => {
+    // Don't call API on auth pages
+    if (location.pathname === "/login") return;
+
     fetchUser();
-  }, []);
+  }, [location.pathname]);
 
   return (
     <div className="flex flex-col">
