@@ -27,10 +27,14 @@ const Feed = () => {
   }, []);
 
   return (
-    <div className="mx-4 flex min-h-screen items-center justify-center gap-4">
-      {feedData?.map((item) => (
-        <UserCard key={item._id} user={item} />
-      ))}
+    <div className="mx-4 flex min-h-screen items-center justify-center">
+      {!feedData || feedData.length === 0 ? (
+        <h1 className="text-center text-3xl mt-10">
+          You have seen all users 🎉
+        </h1>
+      ) : (
+        <UserCard user={feedData[0]} />
+      )}
     </div>
   );
 };
